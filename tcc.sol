@@ -80,8 +80,7 @@ contract TheCalicoToken is ERC20, Ownable {
     function endPresale() external onlyOwner {
         require(!presaleEnded, "Presale already completed!");
         presaleEnded = true;
-        uint256 liquidityAmount = totalRaised / 2; // 50% a liquidez
-        _transfer(address(this), owner(), totalRaised - liquidityAmount);
+        _transfer(address(this), owner(), liquidityAmount);
     }
 
     function claimTokens() external {
