@@ -21,7 +21,7 @@ contract TheCalicoToken is ERC20, Ownable {
     uint256 private constant REWARD_RATE = 10;
     uint256 private constant SECONDS_IN_YEAR = 365 * 24 * 60 * 60;
 
-    constructor(address initialOwner) ERC20("CalicoToken", "CALI") Ownable(initialOwner) {
+    constructor(address initialOwner) ERC20("TheCalicoToken", "TCC") Ownable(initialOwner) {
         _mint(address(this), _initialSupply);
     }
 
