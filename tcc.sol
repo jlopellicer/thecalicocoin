@@ -31,8 +31,8 @@ contract TheCalicoToken is ERC20, Ownable {
 
     // --- STAKING ---
     function stakeTokens(uint256 amount) external {
-        require(amount > 0, "No puedes hacer stake de 0 tokens");
-        require(balanceOf(msg.sender) >= amount, "Saldo insuficiente");
+        require(amount > 0, "You cannot stake 0 tokens");
+        require(balanceOf(msg.sender) >= amount, "Not enough tokens");
 
         _transfer(msg.sender, address(this), amount);
         _stakes[msg.sender] = Stake(amount, block.timestamp);
@@ -40,7 +40,7 @@ contract TheCalicoToken is ERC20, Ownable {
 
     function unstakeTokens() external {
         Stake memory userStake = _stakes[msg.sender];
-        require(userStake.amount > 0, "No tienes tokens en staking");
+        require(userStake.amount > 0, "You have no tokens being staked");
 
         uint256 stakingDuration = block.timestamp - userStake.startTime;
         uint256 reward = (userStake.amount * REWARD_RATE * stakingDuration) / (100 * SECONDS_IN_YEAR);
